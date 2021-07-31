@@ -5,7 +5,8 @@ import Login from "./myComponents/Login";
 import Vote from "./myComponents/Vote";
 import { createBrowserHistory } from "history";
 import ProtectedRoute from "./myComponents/ProtectedRoute";
-import Host from "./myComponents/Host";
+import HostIt from "./myComponents/HostIt";
+import Select from "./myComponents/Select";
 
 function App() {
   return (
@@ -13,8 +14,9 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Login} />
-          <ProtectedRoute exact path="/vote" component={Vote} />
-          <Route exact path="/host" component={Host} />
+          <Route exact path="/vote" component={Vote} />
+          <Route exact path="/select" component={Select} />
+          <Route exact path="/host" component={HostIt} />
           <Route path="*">
             Page Not Found <br />
             <button onClick={() => window.location.assign("/")}>

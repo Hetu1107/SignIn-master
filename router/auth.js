@@ -12,7 +12,8 @@ router.post("/register", async (req, res) => {
   //   res.json({ message: req.body });
   const optionSelected = req.body.optionSelected;
   const email = req.body.email;
-  const todo = new User({ optionSelected, email });
+  const id = req.body.id;
+  const todo = new User({ optionSelected, email, id });
 
   todo.save(function (err) {
     if (err) {

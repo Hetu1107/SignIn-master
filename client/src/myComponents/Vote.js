@@ -1,7 +1,5 @@
 import React from "react";
 import "./vote.css";
-import { GoogleLogout } from "react-google-login";
-import Auth from "./auth";
 import axios from "axios";
 
 class Vote extends React.Component {
@@ -19,10 +17,9 @@ class Vote extends React.Component {
 
   getPost = () => {
     axios
-      .get("http://localhost:3000/show/" + "fgh")
+      .get("http://localhost:3000/show/" + localStorage.getItem("VoteId"))
       .then((res) => {
         const data = res.data;
-        console.log(data[0].name);
         this.setState({ posts: data });
         console.log(this.state.posts);
         this.setState({ posts: data });
@@ -35,10 +32,6 @@ class Vote extends React.Component {
 
   submit = async (e) => {
     console.log(this.state.name);
-    console.log(
-      window.gapi.auth2.getAuthInstance().currentUser.Td.profileObj.email
-    );
-
     e.preventDefault();
     const res = await fetch("/register", {
       method: "POST",
@@ -47,8 +40,8 @@ class Vote extends React.Component {
       },
       body: JSON.stringify({
         optionSelected: this.state.name,
-        email:
-          window.gapi.auth2.getAuthInstance().currentUser.Td.profileObj.email,
+        email: localStorage.getItem("email"),
+        id: localStorage.getItem("VoteId"),
       }),
     });
     const data = await res.json();
@@ -64,24 +57,9 @@ class Vote extends React.Component {
     }
   };
 
-  signOut = (res) => {
-    Auth.logout(() => {
-      this.props.history.push("/");
-    });
-    var auth2 = window.gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log("User signed out.");
-      console.log(window.gapi.auth2.getAuthInstance().isSignedIn.get());
-    });
-  };
   render() {
     return (
       <>
-        <GoogleLogout
-          clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
-          buttonText="Logout"
-          onLogoutSuccess={this.signOut}
-        ></GoogleLogout>
         <div>
           <form method="POST" onSubmit={this.submit}>
             <div className="main-container">

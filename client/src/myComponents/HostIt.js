@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
+import "./hostIt.css";
 
-export class Host extends Component {
+class HostIt extends React.Component {
   constructor(props) {
     super(props);
     this.state = { values: [], id: "" };
@@ -85,4 +86,4 @@ export class Host extends Component {
   }
 }
 
-export default Host;
+export default HostIt;
