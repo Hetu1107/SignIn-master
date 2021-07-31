@@ -34,7 +34,7 @@ body{
     position: relative;
     width: 55%;
     height: 500px;
-    background: rgb(44, 100, 156);
+    background: #85B3D1FF;
     margin: 20px;
     /* box-shadow: 0 15px 35px rgba(255, 255, 255, 0.171); */
     border-radius: 5px;
@@ -65,8 +65,8 @@ i{
     height: 150px;
     border-radius: 50%;
     overflow: hidden;
-    border: 10px solid #a6b3c2;
-    background: #303030;
+    border: 10px solid #475cc9;
+    background: #000000d0;
 }
 .container .card .content .img img{
     position: absolute;
@@ -84,7 +84,7 @@ i{
     text-align: center;
     margin: 20px 0 10px;
     line-height: 1.1em;
-    color: #daebff;
+    color: #2b3a86;
 }
 .container .card .content .contentBx h3{
     font-size: 24px;
