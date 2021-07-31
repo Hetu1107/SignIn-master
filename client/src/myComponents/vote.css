@@ -17,7 +17,7 @@ body {
 
 .main-container h1 {
   margin: 0 0 80px 0;
-  color: #8373e6;
+  color: #475cc9;
   font-size: 40px;
   font-family: sans-serif;
   font-weight: 700;
@@ -43,11 +43,12 @@ body {
   position: relative;
   text-align: center;
   box-shadow: 0 0 20px #c3c3c367;
+  background: #637aecbe;
   cursor: pointer;
 }
 .radio-btn > i {
   color: #ffffff;
-  background-color: #8373e6;
+  background-color: #000000;
   font-size: 20px;
   position: absolute;
   top: -15px;
@@ -73,7 +74,7 @@ body {
   font-family: sans-serif;
 }
 .custom-radio input:checked + .radio-btn {
-  border: 3px solid #8373e6;
+  border: 3px solid #000000;
 }
 .custom-radio input:checked + .radio-btn > i {
   opacity: 1;
@@ -91,8 +92,10 @@ button {
   outline: none;
   color: white;
   font-size: 20px;
-  background: rgb(31, 158, 84);
+  margin-bottom: 50px;
+  background: #475cc9;
+  transition: all 0.3s ease;
 }
 button:hover {
-  background: rgba(31, 158, 84, 0.705);
+  background: #475dc9cb;
 }

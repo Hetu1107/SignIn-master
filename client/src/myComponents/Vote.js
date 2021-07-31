@@ -19,7 +19,7 @@ class Vote extends React.Component {
 
   getPost = () => {
     axios
-      .get("http://localhost:3000/show/" + "fgh")
+      .get("http://localhost:3000/show/" + "rst02")
       .then((res) => {
         const data = res.data;
         console.log(data[0].name);
@@ -77,15 +77,10 @@ class Vote extends React.Component {
   render() {
     return (
       <>
-        <GoogleLogout
-          clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
-          buttonText="Logout"
-          onLogoutSuccess={this.signOut}
-        ></GoogleLogout>
         <div>
           <form method="POST" onSubmit={this.submit}>
             <div className="main-container">
-              <h1>Please choose your valuable Vote !!</h1>
+              <h1>Please choose your valuable Vote !! <i class="far fa-hand-point-down"></i></h1>
               <div className="radio-buttons">
                 {Object.entries(this.state.posts).map(([key, value]) => (
                   <label key={key} className="custom-radio">
