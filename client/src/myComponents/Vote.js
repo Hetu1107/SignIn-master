@@ -17,11 +17,7 @@ class Vote extends React.Component {
 
   getPost = () => {
     axios
-<<<<<<< HEAD
       .get("http://localhost:3000/show/" + localStorage.getItem("VoteId"))
-=======
-      .get("http://localhost:3000/show/" + "rst02")
->>>>>>> 23911d8f0677dba6262a3b4cf814693b2dfd9add
       .then((res) => {
         const data = res.data;
         this.setState({ posts: data });
@@ -67,7 +63,10 @@ class Vote extends React.Component {
         <div>
           <form method="POST" onSubmit={this.submit}>
             <div className="main-container">
-              <h1>Please choose your valuable Vote !! <i class="far fa-hand-point-down"></i></h1>
+              <h1>
+                Please choose your valuable Vote !!{" "}
+                <i class="far fa-hand-point-down"></i>
+              </h1>
               <div className="radio-buttons">
                 {Object.entries(this.state.posts).map(([key, value]) => (
                   <label key={key} className="custom-radio">
