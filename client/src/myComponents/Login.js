@@ -18,7 +18,7 @@ const login = (props) => {
     });
   };
 
-  const responseGoogle = (res) => {
+const responseGoogle = (res) => {
     console.log(res);
     console.log(window.gapi.auth2.getAuthInstance().isSignedIn.get());
     if (res.profileObj.email.includes("iiitsurat.ac.in")) {
@@ -35,6 +35,7 @@ const login = (props) => {
 
   return (
     <>
+<<<<<<< HEAD
       <div className="heading">
         <h1>Hello Friends !</h1>
         <h1>
@@ -53,12 +54,31 @@ const login = (props) => {
                 E-Voting.
                 <br />
                 <br />
+=======
+    <div className="heading">
+      <h1>Hello Friends !</h1>
+      <h1>Please login through your institute gmail ID. <i class="fas fa-vote-yea"></i></h1>
+    </div>
+    <div class="container">
+        <div class="card">
+          <div class="content">
+            <div class="img">
+              <img
+                src = {logo}
+                alt=""
+              />
+            </div>
+            <div class="contentBx">
+              <h3>
+                E-Voting.<br/><br/>
+>>>>>>> 23911d8f0677dba6262a3b4cf814693b2dfd9add
                 <span>मतदान आपका हक, गर्व से वोट दें |</span>
               </h3>
             </div>
           </div>
           {/* <button type="submit" class="submit"><i class="fab fa-google"></i> google</button> */}
           <div class="google">
+<<<<<<< HEAD
             <GoogleLogin
               clientId="777048971525-qs4i92dmm3iv9h5ng7s82r7bmv4ja1ou.apps.googleusercontent.com"
               buttonText="Login"
@@ -68,8 +88,19 @@ const login = (props) => {
             />
           </div>
         </div>
+=======
+        <GoogleLogin  
+          clientId="777048971525-qs4i92dmm3iv9h5ng7s82r7bmv4ja1ou.apps.googleusercontent.com"
+          buttonText="Login"
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+          cookiePolicy={"single_host_origin"}
+        />
+>>>>>>> 23911d8f0677dba6262a3b4cf814693b2dfd9add
       </div>
-    </>
+        </div>
+        </div>
+      </>
   );
 };
 
