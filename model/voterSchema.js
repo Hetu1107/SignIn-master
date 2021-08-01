@@ -11,9 +11,8 @@ const voterSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    unique: true,
     required: true,
   },
 });
-const User = mongoose.model("User", voterSchema);
+const User = mongoose.model("Voter", voterSchema);
 module.exports = User;

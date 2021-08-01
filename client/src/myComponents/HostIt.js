@@ -21,7 +21,10 @@ class HostIt extends React.Component {
           value="remove"
           onClick={this.removeClick.bind(this, i)}
         /> */}
-        <i class="fas fa-times-circle close" onClick={this.removeClick.bind(this, i)}></i>
+        <i
+          class="fas fa-times-circle close"
+          onClick={this.removeClick.bind(this, i)}
+        ></i>
       </div>
     ));
   }
@@ -56,6 +59,7 @@ class HostIt extends React.Component {
         body: JSON.stringify({
           id: this.state.id,
           name: el,
+          email: localStorage.getItem("email"),
         }),
       });
     });
@@ -64,35 +68,36 @@ class HostIt extends React.Component {
   render() {
     return (
       <>
-    
-      <div class="conta" id="container3">
-        <h1>Please fill all the details.</h1>
-        <div class="details">
-        <div class="batch">
-        <h3>Enter ID</h3>
-          <input
-            type="text"
-            name="uniqueId"
-            id="Unique"
-            value={this.state.id}
-            onChange={(e) => this.setState({ id: e.target.value })}
-            placeholder="Enter an id"
-          />
+        <div class="conta" id="container3">
+          <h1>Please fill all the details.</h1>
+          <div class="details">
+            <div class="batch">
+              <h3>Enter ID</h3>
+              <input
+                type="text"
+                name="uniqueId"
+                id="Unique"
+                value={this.state.id}
+                onChange={(e) => this.setState({ id: e.target.value })}
+                placeholder="Enter an id"
+              />
+            </div>
+            <h3>Click On add for adding Names.</h3>
+            <form>
+              {this.createUI()}
+              <button
+                type="button"
+                value="add more"
+                onClick={this.addClick.bind(this)}
+              >
+                Add Name
+              </button>
+              <button onClick={this.handleSubmit}>Submit</button>
+              <button>Back</button>
+            </form>
+          </div>
         </div>
-        <h3>Click On add for adding Names.</h3>
-        <form onSubmit={this.handleSubmit}>
-          {this.createUI()}
-          <button
-            type="button"
-            value="add more"
-            onClick={this.addClick.bind(this)}
-          >Add Name</button>
-          <button>Submit</button>
-          <button>Back</button>
-        </form>
-        </div>
-        </div>
-</>
+      </>
     );
   }
 }

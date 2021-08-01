@@ -15,26 +15,29 @@ router.post("/register", async (req, res) => {
   const id = req.body.id;
   const todo = new User({ optionSelected, email, id });
 
-  todo.save(function (err) {
-    if (err) {
-      if (err.name === "MongoError" && err.code === 11000) {
-        return res
-          .status(422)
-          .send({ success: false, message: "You can only vote once" });
+  const dup = await User.findOne({ id: id, email: email });
+  if (dup) {
+    console.log("exists");
+    res.send({ success: false, message: "You can only vote once" });
+  }
+  if (!dup) {
+    todo.save(function (err) {
+      if (err) {
+        return res.status(422).send(err);
       }
-      return res.status(422).send(err);
-    }
-    res.json({
-      success: true,
+      res.json({
+        success: true,
+      });
     });
-  });
+  }
 });
 
 router.post("/hoster", async (req, res) => {
   //   res.json({ message: req.body });
   const id = req.body.id;
   const name = req.body.name;
-  const hoster = new Container({ id, name });
+  const email = req.body.email;
+  const hoster = new Container({ id, name, email });
 
   hoster.save(function (err) {
     if (err) {

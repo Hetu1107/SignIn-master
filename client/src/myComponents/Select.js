@@ -9,6 +9,9 @@ export default function Select() {
   const Vote = () => {
     setA(1);
   };
+  const Back = () => {
+    setA(0);
+  };
   const submitVote = () => {
     localStorage.setItem("VoteId", id);
     window.location.assign("/vote");
@@ -23,47 +26,48 @@ export default function Select() {
       <div class="main">
         {a === 0 ? (
           <div class="contai">
-          <div class="img">
-                <img src={logo} alt=""/>
+            <div class="img">
+              <img src={logo} alt="" />
             </div>
             <h1>E-Voting</h1>
             <div class="button">
-            <button type="submit" onClick={Vote}>
-              Vote
-            </button>
-            <button type="submit" onClick={Host}>
-              Host
-            </button>
+              <button type="submit" onClick={Vote}>
+                Vote
+              </button>
+              <button type="submit" onClick={Host}>
+                Host
+              </button>
             </div>
           </div>
         ) : a === 1 ? (
           <>
-          <div class="contai">
-            <div class="img">
-                <img src={logo} alt=""/>
-            </div>
-        <div class="enter" id="id">
-            <h3>Enter Id given by host</h3>
-            <input
-              type="text"
-              value={id}
-              name="id"
-              id="id"
-              onChange={(e) => setId(e.target.value)}
-            />
-            </div>
-            <div class="button">
-            <button type="submit" onClick={submitVote}>
-              Vote Now
-            </button>
-            <button type="submit" id="back">Back</button>
-
-            </div>
+            <div class="contai">
+              <div class="img">
+                <img src={logo} alt="" />
+              </div>
+              <div class="enter" id="id">
+                <h3>Enter Id given by host</h3>
+                <input
+                  type="text"
+                  value={id}
+                  name="id"
+                  id="id"
+                  onChange={(e) => setId(e.target.value)}
+                />
+              </div>
+              <div class="button">
+                <button type="submit" onClick={submitVote}>
+                  Vote Now
+                </button>
+                <button type="submit" onClick={Back} id="back">
+                  Back
+                </button>
+              </div>
             </div>
           </>
         ) : a === 2 ? (
           <div class="hosti">
-          <HostIt />
+            <HostIt />
           </div>
         ) : null}
       </div>
