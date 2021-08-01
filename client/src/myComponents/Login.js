@@ -21,6 +21,7 @@ const login = (props) => {
   const responseGoogle = (res) => {
     console.log(res);
     console.log(window.gapi.auth2.getAuthInstance().isSignedIn.get());
+    localStorage.setItem("email", res.profileObj.email);
     if (res.profileObj.email.includes("iiitsurat.ac.in")) {
       if (window.gapi.auth2.getAuthInstance().isSignedIn.get()) {
         Auth.login(() => {
