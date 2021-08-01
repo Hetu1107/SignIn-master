@@ -49,7 +49,7 @@ const login = (props) => {
               <img src={logo} alt="" />
             </div>
             <div class="contentBx">
-              <h3>
+              <h3 class="mat">
                 E-Voting.
                 <br />
                 <br />

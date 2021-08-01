@@ -10,17 +10,18 @@ class HostIt extends React.Component {
 
   createUI() {
     return this.state.values.map((el, i) => (
-      <div key={i}>
+      <div key={i} class="inpu">
         <input
           type="text"
           value={el || ""}
           onChange={this.handleChange.bind(this, i)}
         />
-        <input
+        {/* <input
           type="button"
           value="remove"
           onClick={this.removeClick.bind(this, i)}
-        />
+        /> */}
+        <i class="fas fa-times-circle close" onClick={this.removeClick.bind(this, i)}></i>
       </div>
     ));
   }
@@ -78,6 +79,7 @@ class HostIt extends React.Component {
             placeholder="Enter an id"
           />
         </div>
+        <h3>Click On add for adding Names.</h3>
         <form onSubmit={this.handleSubmit}>
           {this.createUI()}
           <button

@@ -98,11 +98,18 @@ button:hover{
 
 @media (max-width:767px)
 {
-    .container{
-        width: 90%;
+    .contai{
+        width: 100%;
     }
     input[type=text]{
         width: 100%;
+    }
+    .main{
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 0;
     }
 }
 
@@ -218,4 +225,25 @@ input{
 }
 .hosti{
     width: 100%;
+}
+
+.close{
+    font-size: 20px;
+    margin-left: 5px;
+    color: rgb(255, 68, 71);
+    cursor: pointer;
+}
+.inpu{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: nowrap;
+}
+
+@media (max-width:767px){
+    .hosti{
+        width: 90%;
+    }
 }
