@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
+/* font-family: 'Roboto', sans-serif; */
+/* font-family: 'Montserrat', sans-serif; */
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    width: 100%;
+}
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+h1{
+    font-family: 'Roboto', sans-serif;
+    /* color: white; */
+}
+.contai{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    align-items: center;
+    width: 400px;
+    height: 400px;
+    background-color: rgba(19, 19, 19, 0.781);
+    padding: 50px 10px;
+    border-radius: 10px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+.img{
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 10px solid rgb(255, 255, 255)
+}
+.img img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+input[type=text] {
+    width: 90%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid rgb(134, 134, 134);
+    -webkit-transition: 0.5s;
+    transition: 0.3s;
+    outline: none;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 10px;
+    background: transparent;
+    color: white;
+  }
+  input[type=text]:focus {
+    border: 3px solid rgb(66, 94, 255);
+  }
+  input[type=text]:hover{
+    border: 3px solid rgb(255, 255, 255);
+  } 
+  input[type=text]:focus:hover{
+    border: 3px solid rgb(66, 94, 255);
+  } 
+button{
+    margin: 20px 5px;
+    width: 130px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    color: white;
+    font-size: 20px;
+    background: rgb(31, 158, 84);
+    align-items: center;
+    text-align: center;
+}
+button:hover{
+    background: rgba(31, 158, 84, 0.705);
+}
+
+@media (max-width:767px)
+{
+    .container{
+        width: 90%;
+    }
+    input[type=text]{
+        width: 100%;
+    }
+}
+
+input{
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid rgb(134, 134, 134);
+    -webkit-transition: 0.5s;
+    transition: 0.3s;
+    outline: none;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 10px;
+    background: transparent;
+    color: white;
+  }
+  input:focus {
+    border: 3px solid rgb(66, 94, 255);
+  }
+  input:hover{
+    border: 3px solid rgb(255, 255, 255);
+  } 
+  input:focus:hover{
+    border: 3px solid rgb(66, 94, 255);
+  } 
+
+  h3{
+      /* color: rgb(161, 161, 161); */
+      font-size: 20px;
+      font-family: 'Montserrat', sans-serif;
+      color: white;
+  }
+  h1{
+      /* color: whitesmoke; */
+      font-size: 40px;
+      margin-top: 20px;
+      text-align: center;
+      color: white;
+
+  }
+@media (max-width:767px)
+{
+    .conta{
+        width: 90%;
+    }
+    input[type=text]{
+        width: 100%;
+    }
+}
+#filldetails{
+    text-decoration: none;
+    font-size: 20px;
+    border: solid 3px rgb(31, 158, 84);
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    margin-top: 20px;
+    align-items: center;
+}
+#filldetails:hover{
+    border: solid 3px rgb(97, 255, 163);
+}
+.conta{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    width: 60%;
+    min-height: 700px;
+    background-color: rgba(19, 19, 19, 0.781);
+    padding: 50px 10px;
+    border-radius: 10px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+
+    
+}
+.details{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    font-family: 'Montserrat', sans-serif;
+}
+.details input{
+    width: 80%;
+    margin-top: 10px;
+    margin-left: 5px;
+}
+.details div{
+    margin: 20px 0;
+    margin-left: 20px;
+}
+#container{
+    font-size: 20px;
+    color: white;
+}
+.bod{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(49, 49, 49);
+}
+#container3{
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.hosti{
+    width: 100%;
+}
