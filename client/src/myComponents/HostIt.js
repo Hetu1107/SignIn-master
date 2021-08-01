@@ -10,17 +10,18 @@ class HostIt extends React.Component {
 
   createUI() {
     return this.state.values.map((el, i) => (
-      <div key={i}>
+      <div key={i} class="inpu">
         <input
           type="text"
           value={el || ""}
           onChange={this.handleChange.bind(this, i)}
         />
-        <input
+        {/* <input
           type="button"
           value="remove"
           onClick={this.removeClick.bind(this, i)}
-        />
+        /> */}
+        <i class="fas fa-times-circle close" onClick={this.removeClick.bind(this, i)}></i>
       </div>
     ));
   }
@@ -63,25 +64,35 @@ class HostIt extends React.Component {
   render() {
     return (
       <>
-        ID:
-        <input
-          type="text"
-          name="uniqueId"
-          id="Unique"
-          value={this.state.id}
-          onChange={(e) => this.setState({ id: e.target.value })}
-          placeholder="Enter an id"
-        />
+    
+      <div class="conta" id="container3">
+        <h1>Please fill all the details.</h1>
+        <div class="details">
+        <div class="batch">
+        <h3>Enter ID</h3>
+          <input
+            type="text"
+            name="uniqueId"
+            id="Unique"
+            value={this.state.id}
+            onChange={(e) => this.setState({ id: e.target.value })}
+            placeholder="Enter an id"
+          />
+        </div>
+        <h3>Click On add for adding Names.</h3>
         <form onSubmit={this.handleSubmit}>
           {this.createUI()}
-          <input
+          <button
             type="button"
             value="add more"
             onClick={this.addClick.bind(this)}
-          />
-          <input type="submit" value="Submit" />
+          >Add Name</button>
+          <button>Submit</button>
+          <button>Back</button>
         </form>
-      </>
+        </div>
+        </div>
+</>
     );
   }
 }
