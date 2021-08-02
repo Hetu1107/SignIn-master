@@ -72,6 +72,7 @@ class HostIt extends React.Component {
           <h1>Please fill all the details.</h1>
           <div class="details">
             <div class="batch">
+            <div class="tt">
               <h3>Enter ID</h3>
               <input
                 type="text"
@@ -81,6 +82,15 @@ class HostIt extends React.Component {
                 onChange={(e) => this.setState({ id: e.target.value })}
                 placeholder="Enter an id"
               />
+              </div>
+              <div class="d">
+              <h3>Choose End Date</h3>
+              <input type="date"/>
+              </div>
+              <div class="t">
+              <h3>Choose End Time</h3>
+              <input type="time"/>
+              </div>
             </div>
             <h3>Click On add for adding Names.</h3>
             <form>

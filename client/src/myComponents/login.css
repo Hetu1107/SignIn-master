@@ -15,6 +15,7 @@ body{
     background: #c5e7eb;
     background-repeat: no-repeat;
     background-size: cover;
+    width: 100vw;
 }
 .heading{
     margin-top: 40px;
