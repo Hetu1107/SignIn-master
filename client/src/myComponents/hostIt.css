@@ -8,6 +8,8 @@
 }
 body{
     width: 100%;
+    align-items: center;
+    justify-content: center;
 }
 .main{
     display: flex;
@@ -152,18 +154,9 @@ input{
       color: white;
 
   }
-@media (max-width:767px)
-{
-    .conta{
-        width: 90%;
-    }
-    input[type=text]{
-        width: 100%;
-    }
-}
-#filldetails{
-    text-decoration: none;
-    font-size: 20px;
+  #filldetails{
+      text-decoration: none;
+      font-size: 20px;
     border: solid 3px rgb(31, 158, 84);
     padding: 10px;
     color: white;
@@ -186,13 +179,16 @@ input{
     padding: 50px 10px;
     border-radius: 10px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-
+    margin-bottom: 20px;
+    
     
 }
 .details{
     display: flex;
     width: 100%;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     margin-top: 100px;
     margin-bottom: 50px;
     font-family: 'Montserrat', sans-serif;
@@ -246,4 +242,62 @@ input{
     .hosti{
         width: 90%;
     }
+}
+@media (max-width:767px)
+{
+    .conta{
+        width: 90%;
+        margin: 0;
+        padding: 50px 5px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    input[type=text]{
+        width: 90%;
+    }
+}
+.batch{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.t,.d,.tt{
+    margin-top: 10px;
+    padding: 0;
+    margin-left: 0;
+    margin-right: 0;
+
+}
+.batch{
+    padding: 0;
+    margin: 0;
+    align-items: center;
+    justify-content: center;
+    /* background: chartreuse; */
+    padding: 0px 10px;
+
+}
+.tt input{
+    width: 90%;
+    margin: 0;
+    margin-top: 5px;
+    padding: 15px 3px;
+}
+.t input{
+    width: 90%;
+    margin: 0;
+    margin-top: 5px;
+    padding: 15px 3px;
+}
+.d input{
+    width: 90%;
+    margin: 0;
+    margin-top: 5px;
+    padding: 15px 3px;
+}
+input[type="time"]{
+    width: 90%;
+}
+input[type="date"]{
+    width: 90%;
 }
