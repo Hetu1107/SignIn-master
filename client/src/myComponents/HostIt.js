@@ -2,11 +2,13 @@ import React from "react";
 import "./hostIt.css";
 import axios from "axios";
 import Auth from "./auth";
+import Info from "./After_hostit";
+import { set } from "mongoose";
 
 class HostIt extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { values: [], id: "", click: 0, c: 0 };
+    this.state = { values: [], id: "", click: 0, c: 0};
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -82,7 +84,10 @@ class HostIt extends React.Component {
           .then((response) => {
             console.log(response.data.success);
             if (response.data.success) {
-              window.alert("You have successfully hosted.");
+              localStorage.setItem('hostid',this.state.id);
+              localStorage.setItem('time',"00:00:00");
+              // window.alert("You have successfully hosted.");
+              window.location.assign('/kuch_bhi');
             } else if (!response.data.success) {
               window.alert(
                 "This ID cannot be accepted, please choose a different ID."
@@ -95,7 +100,6 @@ class HostIt extends React.Component {
       });
     }
   };
-
   render() {
     return (
       <>
