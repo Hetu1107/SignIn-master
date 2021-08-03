@@ -1,12 +1,19 @@
 import React from "react";
 import "./hostIt.css";
+import axios from "axios";
+import Auth from "./auth";
 
 class HostIt extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { values: [], id: "" };
+    this.state = { values: [], id: "", click: 0, c: 0 };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  parentCallBack = () => {
+    var a = 0;
+    this.props.Back(a);
+  };
 
   createUI() {
     return this.state.values.map((el, i) => (
@@ -37,63 +44,88 @@ class HostIt extends React.Component {
 
   addClick() {
     this.setState((prevState) => ({ values: [...prevState.values, ""] }));
+    this.setState({ click: this.state.click + 1 });
   }
 
   removeClick(i) {
     let values = [...this.state.values];
     values.splice(i, 1);
     this.setState({ values });
+    this.setState({ click: this.state.click - 1 });
   }
 
-  handleSubmit(event) {
-    alert("A name was submitted: " + this.state.values.join(", "));
+  handleSubmit = async (event) => {
+    var flag = 0;
+    this.state.values.map((el, i) => {
+      if (el == "") {
+        flag = 1;
+      }
+    });
     console.log(this.state.values);
     console.log(this.state.id);
     event.preventDefault();
-    this.state.values.map((el, i) => {
-      const res = fetch("/hoster", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: this.state.id,
-          name: el,
-          email: localStorage.getItem("email"),
-        }),
+    if (this.state.id === "") {
+      window.alert("You need to enter an ID");
+    } else if (flag == 1) {
+      window.alert("You cannot leave the input field empty.");
+    } else if (this.state.click === 0 || this.state.click === 1) {
+      console.log("click is", this.state.click);
+      window.alert("You need to add atleast two options.");
+    } else {
+      this.state.values.map((el, i) => {
+        axios
+          .post("/hoster", {
+            id: this.state.id,
+            email: localStorage.getItem("email"),
+            name: el,
+          })
+          .then((response) => {
+            console.log(response.data.success);
+            if (response.data.success) {
+              window.alert("You have successfully hosted.");
+            } else if (!response.data.success) {
+              window.alert(
+                "This ID cannot be accepted, please choose a different ID."
+              );
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       });
-    });
-  }
+    }
+  };
 
   render() {
     return (
       <>
+
         <div class="conta" id="container3">
           <h1>Please fill all the details.</h1>
           <div class="details">
             <div class="batch">
-            <div class="tt">
-              <h3>Enter ID</h3>
-              <input
-                type="text"
-                name="uniqueId"
-                id="Unique"
-                value={this.state.id}
-                onChange={(e) => this.setState({ id: e.target.value })}
-                placeholder="Enter an id"
-              />
+              <div class="tt">
+                <h3>Enter ID</h3>
+                <input
+                  type="text"
+                  name="uniqueId"
+                  id="Unique"
+                  value={this.state.id}
+                  onChange={(e) => this.setState({ id: e.target.value })}
+                  placeholder="Enter an id"
+                />
               </div>
               <div class="d">
-              <h3>Choose End Date</h3>
-              <input type="date"/>
+                <h3>Choose End Date</h3>
+                <input required type="date" />
               </div>
               <div class="t">
-              <h3>Choose End Time</h3>
-              <input type="time"/>
+                <h3>Choose End Time</h3>
+                <input required type="time" />
               </div>
             </div>
             <h3>Click On add for adding Names.</h3>
-            <form>
+            <form >
               {this.createUI()}
               <button
                 type="button"
@@ -102,8 +134,10 @@ class HostIt extends React.Component {
               >
                 Add Name
               </button>
-              <button onClick={this.handleSubmit}>Submit</button>
-              <button>Back</button>
+              <button type="submit" onClick={this.handleSubmit}>
+                Submit
+              </button>
+              <button onClick={this.parentCallBack}>Back</button>
             </form>
           </div>
         </div>

@@ -14,9 +14,8 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Login} />
-          <Route exact path="/vote" component={Vote} />
-          <Route exact path="/select" component={Select} />
-          <Route exact path="/host" component={HostIt} />
+          <ProtectedRoute exact path="/vote" component={Vote} />
+          <ProtectedRoute exact path="/select" component={Select} />
           <Route path="*">
             Page Not Found <br />
             <button onClick={() => window.location.assign("/")}>

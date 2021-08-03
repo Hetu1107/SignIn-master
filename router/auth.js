@@ -39,19 +39,24 @@ router.post("/hoster", async (req, res) => {
   const email = req.body.email;
   const hoster = new Container({ id, name, email });
 
-  hoster.save(function (err) {
-    if (err) {
-      if (err.name === "MongoError" && err.code === 11000) {
-        return res
-          .status(422)
-          .send({ success: false, message: "You can only vote once" });
-      }
-      return res.status(422).send(err);
-    }
-    res.json({
-      success: true,
+  const dup = await Container.findOne({ id: id });
+  if (dup) {
+    console.log("already exist");
+    res.send({
+      success: false,
+      message: "This Id already exists, please type a unique id.",
     });
-  });
+  }
+  if (!dup) {
+    hoster.save(function (err) {
+      if (err) {
+        return res.status(422).send(err);
+      }
+      res.json({
+        success: true,
+      });
+    });
+  }
 });
 
 router.get("/show/:id", function (req, res) {
@@ -63,7 +68,7 @@ router.get("/show/:id", function (req, res) {
 
 router.get("/del/:id", async (req, res) => {
   try {
-    await User.findByIdAndDelete(req.params.id);
+    await Container.deleteMany({ id: req.params.id });
     return res.status(200).json({ success: true, msg: "Product Deleted" });
   } catch (err) {
     console.error(err);

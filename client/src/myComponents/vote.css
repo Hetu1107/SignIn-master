@@ -1,4 +1,4 @@
-.dm{
+.dm {
   padding: 0;
   margin: 0;
   display: flex;
@@ -100,7 +100,7 @@ button {
 button:hover {
   background: #475dc9cb;
 }
-.timer-container{
+.timer-container {
   flex-basis: 1;
   flex-shrink: inherit;
   margin: 0;
@@ -113,37 +113,36 @@ button:hover {
   justify-content: center;
   box-shadow: 10px 10px 30px rgb(88, 88, 88);
 }
-.timer{
+.timer {
   align-items: center;
   display: flex;
   flex-direction: column;
 }
-.timer div{
+.timer div {
   margin-top: 10px;
 }
-.time{
+.time {
   margin-top: 10px;
   display: flex;
   flex-direction: row;
-
 }
-.time section{
+.time section {
   padding: 5px;
 }
-.timer i{
+.timer i {
   font-size: 20px;
 }
-.timer h2{
+.timer h2 {
   font-size: 24px;
   color: #475cc9;
 }
-p{
+p {
   font-family: sans-serif;
   font-size: 20px;
   font-weight: 500;
 }
 
-.chart{
+.chart {
   display: none;
   width: 90%;
 }
