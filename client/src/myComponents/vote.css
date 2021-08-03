@@ -143,6 +143,6 @@ p {
 }
 
 .chart {
-  display: none;
+  margin-top: 50px;
   width: 90%;
 }
