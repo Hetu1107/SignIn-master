@@ -61,7 +61,8 @@ class Vote extends React.Component {
         console.log(this.state.labels);
         console.log(localStorage.getItem("available"));
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log(err);
         alert("Error retrieving data");
       });
   };
