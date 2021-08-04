@@ -37,34 +37,32 @@ class Vote extends React.Component {
   };
 
   getPost = () => {
-    axios
-      .get("/show/" + localStorage.getItem("VoteId"))
-      .then((res) => {
-        const data = res.data;
-        this.setState({ posts: data });
-        console.log(this.state.posts);
-        console.log("Data has been recieved");
-        Object.entries(this.state.posts).map(([key, value]) => {
-          this.setState({ labels: [...this.state.labels, value.name] });
-        });
-        this.state.labels.map((el, key) => {
-          axios
-            .get("/count/" + el + "/" + localStorage.getItem("VoteId"))
-            .then((response) => {
-              console.log(response.data.count);
-              this.setState({
-                count: [...this.state.count, response.data.count],
-              });
-              console.log(this.state.count);
-            });
-        });
-        console.log(this.state.labels);
-        console.log(localStorage.getItem("available"));
-      })
-      .catch((err) => {
-        window.alert("Invalid ID, please recheck the ID you have entered");
-        window.location.assign("/");
+    axios.get("/show/" + localStorage.getItem("VoteId")).then((res) => {
+      const data = res.data;
+      this.setState({ posts: data });
+      console.log(this.state.posts);
+      console.log("Data has been recieved");
+      Object.entries(this.state.posts).map(([key, value]) => {
+        this.setState({ labels: [...this.state.labels, value.name] });
       });
+      this.state.labels.map((el, key) => {
+        axios
+          .get("/count/" + el + "/" + localStorage.getItem("VoteId"))
+          .then((response) => {
+            console.log(response.data.count);
+            this.setState({
+              count: [...this.state.count, response.data.count],
+            });
+            console.log(this.state.count);
+          })
+          .catch((err) => {
+            window.alert("Invalid ID, please recheck the ID you have entered");
+            window.location.assign("/");
+          });
+      });
+      console.log(this.state.labels);
+      console.log(localStorage.getItem("available"));
+    });
   };
   getDate = () => {
     axios.get("/time/" + localStorage.getItem("VoteId")).then((response) => {
