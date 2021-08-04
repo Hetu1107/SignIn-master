@@ -8,7 +8,15 @@ import { set } from "mongoose";
 class HostIt extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { values: [], id: "", click: 0, c: 0, date: "", time: "" };
+    this.state = {
+      values: [],
+      id: "",
+      click: 0,
+      c: 0,
+      date: "",
+      time: "",
+      input: "",
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -102,6 +110,15 @@ class HostIt extends React.Component {
       });
 
       axios
+        .post("/input", {
+          id: this.state.id,
+          input: this.state.input,
+        })
+        .then((response) => {
+          console.log(response.data.success);
+        });
+
+      axios
         .post("/timer", {
           date: this.state.date,
           time: this.state.time,
@@ -126,10 +143,17 @@ class HostIt extends React.Component {
           <h1>Please fill all the details.</h1>
           <div class="details">
             <div class="batch">
-              {/* <div class="tt">
-              <h3>Title of Voting</h3>
-              <input type="text" name="title" value={} id="title" placeholder="Enter title"/>
-            </div> */}
+              <div class="tt">
+                <h3>Title of Voting</h3>
+                <input
+                  type="text"
+                  name="title"
+                  value={this.state.input}
+                  onChange={(e) => this.setState({ input: e.target.value })}
+                  id="title"
+                  placeholder="Enter title"
+                />
+              </div>
               <div class="tt">
                 <h3>Enter ID</h3>
                 <input
