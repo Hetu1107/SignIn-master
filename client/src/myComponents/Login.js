@@ -23,11 +23,10 @@ const login = (props) => {
     console.log(window.gapi.auth2.getAuthInstance().isSignedIn.get());
     localStorage.setItem("email", res.profileObj.email);
     if (res.profileObj.email.includes("iiitsurat.ac.in")) {
-      if (window.gapi.auth2.getAuthInstance().isSignedIn.get()) {
         Auth.login(() => {
           props.history.push("/select");
         });
-      }
+      
     } else {
       window.alert("Please login using institute id");
       signOut();
