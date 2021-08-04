@@ -95,26 +95,26 @@ class Vote extends React.Component {
   submit = async (e) => {
     // console.log(this.state.name);
     e.preventDefault();
-    const res = await fetch("/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        optionSelected: this.state.name,
-        email: localStorage.getItem("email"),
-        id: localStorage.getItem("VoteId"),
-      }),
-    });
-    const data = await res.json();
-    // console.log(data.success);
-    if (data.success == null) {
-      window.alert("Please select before submitting.");
-    } else if (!data.success) {
-      window.alert("You can only vote once");
-      window.location.assign("/");
-    } else {
-      if (window.confirm("Are you sure?")) {
+    if (window.confirm("Are you sure?")) {
+      const res = await fetch("/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          optionSelected: this.state.name,
+          email: localStorage.getItem("email"),
+          id: localStorage.getItem("VoteId"),
+        }),
+      });
+      const data = await res.json();
+      // console.log(data.success);
+      if (data.success == null) {
+        window.alert("Please select before submitting.");
+      } else if (!data.success) {
+        window.alert("You can only vote once");
+        window.location.assign("/");
+      } else {
         window.alert("You have voted successfully.");
         window.location.assign("/");
       }
