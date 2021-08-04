@@ -25,6 +25,13 @@ const middleware = (req, res, next) => {
 app.get("/", (req, res) => {
   res.send("hello from server app.js");
 });
+// app.get("/*",(req,res)=>{
+//   res.sendFile()
+// })
+
+if(process.env.NODE_ENV==='production'){
+  app.use(express.static('client/build'))
+}
 
 app.listen(PORT, () => {
   console.log(`Server is running at ${hostname}:${PORT}`);
