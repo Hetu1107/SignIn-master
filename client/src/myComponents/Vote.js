@@ -41,7 +41,11 @@ class Vote extends React.Component {
       .get("/show/" + localStorage.getItem("VoteId"))
       .then((res) => {
         const data = res.data;
-        console.log(data);
+        console.log(data.length);
+        if (res.data.length === 0) {
+          window.alert("Invalid ID, please re-confirm with the host.");
+          window.location.assign("/");
+        }
         this.setState({ posts: data });
         console.log(this.state.posts);
         console.log("Data has been recieved");
