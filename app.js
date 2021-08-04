@@ -6,6 +6,9 @@ const hostname = "http://127.0.0.1";
 app.use(express.json());
 app.use(express.static("public"));
 
+const path = require("path");
+app.use(express.static(path.join(__dirname, "client/build")));
+
 const Todo = require("./model/userSchema");
 
 const PORT = process.env.PORT || 5000;
@@ -22,12 +25,12 @@ const middleware = (req, res, next) => {
 //   if (err) return handleError(err);
 // });
 
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "client/build/index.html");
+// app.get("/", (req, res) => {
+//   res.send("hello from server app.js");
+// });
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
-// app.get("/*",(req,res)=>{
-//   res.sendFile()
-// })
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
