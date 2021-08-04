@@ -114,8 +114,10 @@ class Vote extends React.Component {
       window.alert("You can only vote once");
       window.location.assign("/");
     } else {
-      window.alert("You have voted successfully.");
-      window.location.assign("/");
+      if (window.confirm("Are you sure?")) {
+        window.alert("You have voted successfully.");
+        window.location.assign("/");
+      }
     }
   };
   render() {
