@@ -64,7 +64,7 @@ class Vote extends React.Component {
       });
   };
   getDate = () => {
-    axios.get("/time/" + localStorage.getItem("hostid")).then((response) => {
+    axios.get("/time/" + localStorage.getItem("VoteId")).then((response) => {
       console.log("Data is recieved");
       // console.log(response.data[0].date);
       this.setState({
