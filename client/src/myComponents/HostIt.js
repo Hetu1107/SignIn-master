@@ -123,6 +123,10 @@ class HostIt extends React.Component {
           <h1>Please fill all the details.</h1>
           <div class="details">
             <div class="batch">
+            <div class="tt">
+              <h3>Title of Voting</h3>
+              <input type="text" name="title" id="title" placeholder="Enter title"/>
+            </div>
               <div class="tt">
                 <h3>Enter ID</h3>
                 <input
