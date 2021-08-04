@@ -106,15 +106,18 @@ class Vote extends React.Component {
     return (
       <>
         <div class="dm">
-          <Dat
+          {this.state.available == 1 ? (
+            <>
+            <h1 class="result">Final Result</h1>
+            <Chart labels={this.state.labels} count={this.state.count} />
+            </>
+          ) : (
+            <div class="dm">
+            <Dat
             date={this.state.date}
             time={this.state.time}
             checkAvailable={this.checkAvailable}
           />
-          {this.state.available == 1 ? (
-            <Chart labels={this.state.labels} count={this.state.count} />
-          ) : (
-            <div>
               <form method="POST" onSubmit={this.submit}>
                 <div className="main-container">
                   <h1>
@@ -144,7 +147,7 @@ class Vote extends React.Component {
                   </div>
                 </div>
               </form>
-            </div>
+              </div>
           )}
         </div>
       </>

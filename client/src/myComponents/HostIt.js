@@ -85,7 +85,7 @@ class HostIt extends React.Component {
             console.log(response.data.success);
             if (response.data.success) {
               localStorage.setItem("hostid", this.state.id);
-              localStorage.setItem("time", "00:00:00");
+              localStorage.setItem("time", "Date: "+this.state.date+" & Time: "+this.state.time);
               // window.alert("You have successfully hosted.");
             } else if (!response.data.success) {
               window.alert(
@@ -108,7 +108,7 @@ class HostIt extends React.Component {
           console.log(response.data.success);
           if (response.data.success) {
             window.alert("Hosted Successfully");
-            window.location.assign("/kuch_bhi");
+            window.location.assign("/After_HostIt");
           }
         });
     }

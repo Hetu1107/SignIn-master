@@ -15,7 +15,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Login} />
-          <Route exact path="/kuch_bhi" component={Info} />
+          <Route exact path="/After_HostIt" component={Info} />
           <ProtectedRoute exact path="/vote" component={Vote} />
           <ProtectedRoute exact path="/select" component={Select} />
           <Route path="*">
