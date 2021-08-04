@@ -10,6 +10,10 @@ const timerSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  email: {
+    type: String,
+    required: true,
+  },
 });
 const Input = mongoose.model("Input", timerSchema);
 module.exports = Input;
