@@ -16,14 +16,13 @@ class Vote extends React.Component {
       available: 0,
       date: "",
       time: "",
-      input: "",
     };
   }
 
   componentDidMount = () => {
     this.getPost();
     this.getDate();
-    this.getInput();
+    // this.getInput();
   };
   checkAvailable = (a) => {
     if (this.state.available !== 1) {
@@ -76,13 +75,13 @@ class Vote extends React.Component {
     });
   };
 
-  getInput = () => {
-    axios
-      .get("/getInput/" + localStorage.getItem("VoteId"))
-      .then((response) => {
-        this.setState({ input: response.data[0].input });
-      });
-  };
+  // getInput = () => {
+  //   axios
+  //     .get("/getInput/" + localStorage.getItem("VoteId"))
+  //     .then((response) => {
+  //       this.setState({ input: response.data[0].input });
+  //     });
+  // };
 
   // when voting is over
 
@@ -131,7 +130,7 @@ class Vote extends React.Component {
               <form method="POST" onSubmit={this.submit}>
                 <div className="main-container">
                   <h1>
-                    {this.state.input}
+                    Please choose your valuable Vote !!
                     <i class="far fa-hand-point-down"></i>
                   </h1>
                   <div className="radio-buttons">

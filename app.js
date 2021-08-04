@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname, "client/build")));
 
 const Todo = require("./model/userSchema");
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 // console.log(process.env.PORT);
 require("./DB/conn");
 dotenv.config({ path: "./config.env" });
