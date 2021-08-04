@@ -36,7 +36,7 @@ class Vote extends React.Component {
 
   getPost = () => {
     axios
-      .get("http://localhost:3000/show/" + localStorage.getItem("VoteId"))
+      .get("/show/" + localStorage.getItem("VoteId"))
       .then((res) => {
         const data = res.data;
         this.setState({ posts: data });
@@ -46,13 +46,15 @@ class Vote extends React.Component {
           this.setState({ labels: [...this.state.labels, value.name] });
         });
         this.state.labels.map((el, key) => {
-          axios.get("/count/" + el+"/"+localStorage.getItem("VoteId")).then((response) => {
-            console.log(response.data.count);
-            this.setState({
-              count: [...this.state.count, response.data.count],
+          axios
+            .get("/count/" + el + "/" + localStorage.getItem("VoteId"))
+            .then((response) => {
+              console.log(response.data.count);
+              this.setState({
+                count: [...this.state.count, response.data.count],
+              });
+              console.log(this.state.count);
             });
-            console.log(this.state.count);
-          });
         });
         console.log(this.state.labels);
         console.log(localStorage.getItem("available"));
