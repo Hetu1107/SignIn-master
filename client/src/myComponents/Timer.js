@@ -1,7 +1,8 @@
+import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import "./vote.css";
 
-const Dat = () => {
+const Dat = (props) => {
   const [timerDays, setTimerDay] = useState("");
   const [timerHours, setTimerHours] = useState("");
   const [timerMinutes, setTimerMinutes] = useState("");
@@ -9,8 +10,23 @@ const Dat = () => {
 
   let interval = useRef();
 
+  const parentCallBack = (a) => {
+    props.checkAvailable(a);
+  };
+
+  // const getDate = () => {
+  //   axios.get("/time/" + localStorage.getItem("hostid")).then((response) => {
+  //     console.log("Data is recieved");
+  //     console.log(response.data);
+  //   });
+  // };
+
+  // getDate();
+
   const startTimer = () => {
-    const countdownDates = new Date("August 4, 2021 00:00:00").getTime();
+    // console.log(props.date);
+    // console.log(props.time);
+    const countdownDates = new Date(props.date + "," + props.time).getTime();
     interval = setInterval(() => {
       const now = new Date().getTime();
       const distance = countdownDates - now;
@@ -25,12 +41,14 @@ const Dat = () => {
       if (distance < 0) {
         //stop timer
         clearInterval(interval.current);
+        parentCallBack(1);
       } else {
         // update timer
         setTimerDay(days);
         setTimerHours(hour);
         setTimerMinutes(minutes);
         setTimerSeconds(seconds);
+        parentCallBack(0);
       }
     }, 1000);
   };
@@ -41,42 +59,44 @@ const Dat = () => {
     };
   });
   return (
-    <section class="timer-container">
-      <section class="timer">
-        <div>
-          <i class="fas fa-clock"></i>
-        </div>
-        <div class="time">
-          <section>
-            <p>{timerDays}</p>
-            <p>
-              <small>Days</small>
-            </p>
-          </section>
-          <span>:</span>
-          <section>
-            <p>{timerHours}</p>
-            <p>
-              <small>hours</small>
-            </p>
-          </section>
-          <span>:</span>
-          <section>
-            <p>{timerMinutes}</p>
-            <p>
-              <small>minutes</small>
-            </p>
-          </section>
-          <span>:</span>
-          <section>
-            <p>{timerSeconds}</p>
-            <p>
-              <small>seconds</small>
-            </p>
-          </section>
-        </div>
+    <>
+      <section class="timer-container">
+        <section class="timer">
+          <div>
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="time">
+            <section>
+              <p>{timerDays}</p>
+              <p>
+                <small>Days</small>
+              </p>
+            </section>
+            <span>:</span>
+            <section>
+              <p>{timerHours}</p>
+              <p>
+                <small>hours</small>
+              </p>
+            </section>
+            <span>:</span>
+            <section>
+              <p>{timerMinutes}</p>
+              <p>
+                <small>minutes</small>
+              </p>
+            </section>
+            <span>:</span>
+            <section>
+              <p>{timerSeconds}</p>
+              <p>
+                <small>seconds</small>
+              </p>
+            </section>
+          </div>
+        </section>
       </section>
-    </section>
+    </>
   );
 };
 

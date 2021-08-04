@@ -3,6 +3,7 @@ const router = express.Router();
 require("../DB/conn");
 const User = require("../model/voterSchema");
 const Container = require("../model/userSchema");
+const Timer = require("../model/timerSchema");
 
 router.get("/", (req, res) => {
   res.send("Hello from server auth.js");
@@ -30,6 +31,43 @@ router.post("/register", async (req, res) => {
       });
     });
   }
+});
+
+router.post("/timer", async (req, res) => {
+  //   res.json({ message: req.body });
+  const date = req.body.date;
+  const time = req.body.time;
+  const id = req.body.id;
+  const timer = new Timer({ date, time, id });
+
+  timer.save(function (err) {
+    if (err) {
+      return res.status(422).send(err);
+    }
+    res.json({
+      success: true,
+    });
+  });
+});
+
+router.get("/time/:id", function (req, res) {
+  Timer.find({ id: req.params.id }, function (err, result) {
+    if (err) throw err;
+    res.send(result);
+  });
+});
+
+router.get("/count/:name/:id", async (req, res) => {
+  User.countDocuments(
+    { optionSelected: req.params.name, id: req.params.id },
+    function (err, count) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send({ count });
+      }
+    }
+  );
 });
 
 router.post("/hoster", async (req, res) => {

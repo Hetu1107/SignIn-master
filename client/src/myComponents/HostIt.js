@@ -8,7 +8,7 @@ import { set } from "mongoose";
 class HostIt extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { values: [], id: "", click: 0, c: 0};
+    this.state = { values: [], id: "", click: 0, c: 0, date: "", time: "" };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -84,10 +84,9 @@ class HostIt extends React.Component {
           .then((response) => {
             console.log(response.data.success);
             if (response.data.success) {
-              localStorage.setItem('hostid',this.state.id);
-              localStorage.setItem('time',"00:00:00");
+              localStorage.setItem("hostid", this.state.id);
+              localStorage.setItem("time", "00:00:00");
               // window.alert("You have successfully hosted.");
-              window.location.assign('/kuch_bhi');
             } else if (!response.data.success) {
               window.alert(
                 "This ID cannot be accepted, please choose a different ID."
@@ -98,12 +97,28 @@ class HostIt extends React.Component {
             console.log(error);
           });
       });
+
+      axios
+        .post("/timer", {
+          date: this.state.date,
+          time: this.state.time,
+          id: this.state.id,
+        })
+        .then((response) => {
+          console.log(response.data.success);
+          if (response.data.success) {
+            window.alert("Hosted Successfully");
+            window.location.assign("/kuch_bhi");
+          }
+        });
     }
   };
   render() {
+    console.log(this.state.date);
+    console.log(this.state.time);
+
     return (
       <>
-
         <div class="conta" id="container3">
           <h1>Please fill all the details.</h1>
           <div class="details">
@@ -121,15 +136,25 @@ class HostIt extends React.Component {
               </div>
               <div class="d">
                 <h3>Choose End Date</h3>
-                <input required type="date" />
+                <input
+                  value={this.state.date}
+                  onChange={(e) => this.setState({ date: e.target.value })}
+                  required
+                  type="date"
+                />
               </div>
               <div class="t">
                 <h3>Choose End Time</h3>
-                <input required type="time" />
+                <input
+                  value={this.state.time}
+                  onChange={(e) => this.setState({ time: e.target.value })}
+                  required
+                  type="time"
+                />
               </div>
             </div>
             <h3>Click On add for adding Names.</h3>
-            <form >
+            <form>
               {this.createUI()}
               <button
                 type="button"

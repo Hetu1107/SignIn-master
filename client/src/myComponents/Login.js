@@ -37,7 +37,6 @@ const login = (props) => {
   return (
     <>
       <div className="heading">
-        <h1>Hello Friends !</h1>
         <h1>
           Please login through your institute gmail ID.{" "}
           <i class="fas fa-vote-yea"></i>
