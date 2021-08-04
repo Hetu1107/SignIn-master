@@ -22,7 +22,7 @@ class Vote extends React.Component {
   componentDidMount = () => {
     this.getPost();
     this.getDate();
-    // this.getInput();
+    this.getInput();
   };
   checkAvailable = (a) => {
     if (this.state.available !== 1) {
@@ -75,13 +75,13 @@ class Vote extends React.Component {
     });
   };
 
-  // getInput = () => {
-  //   axios
-  //     .get("/getInput/" + localStorage.getItem("VoteId"))
-  //     .then((response) => {
-  //       this.setState({ input: response.data[0].input });
-  //     });
-  // };
+  getInput = () => {
+    axios
+      .get("/getInput/" + localStorage.getItem("VoteId"))
+      .then((response) => {
+        this.setState({ input: response.data[0].input });
+      });
+  };
 
   // when voting is over
 
