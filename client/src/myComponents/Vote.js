@@ -61,8 +61,8 @@ class Vote extends React.Component {
         console.log(this.state.labels);
         console.log(localStorage.getItem("available"));
       })
-      .catch(() => {
-        alert("Invalid ID, please recheck the ID you have entered");
+      .catch((err) => {
+        window.alert("Invalid ID, please recheck the ID you have entered");
         window.location.assign("/");
       });
   };
