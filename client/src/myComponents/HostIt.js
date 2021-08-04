@@ -153,7 +153,7 @@ class HostIt extends React.Component {
                   type="text"
                   name="title"
                   value={this.state.input}
-                  onChange={() => this.setState({ input: e.target.value })}
+                  onChange={(e) => this.setState({ input: e.target.value })}
                   id="title"
                   placeholder="Enter title"
                 />
