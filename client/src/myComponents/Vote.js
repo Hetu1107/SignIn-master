@@ -41,14 +41,14 @@ class Vote extends React.Component {
       .get("/show/" + localStorage.getItem("VoteId"))
       .then((res) => {
         const data = res.data;
-        console.log(data.length);
+        // console.log(data.length);
         if (res.data.length === 0) {
           window.alert("Invalid ID, please re-confirm with the host.");
           window.location.assign("/");
         }
         this.setState({ posts: data });
-        console.log(this.state.posts);
-        console.log("Data has been recieved");
+        // console.log(this.state.posts);
+        // console.log("Data has been recieved");
         Object.entries(this.state.posts).map(([key, value]) => {
           this.setState({ labels: [...this.state.labels, value.name] });
         });
@@ -56,24 +56,24 @@ class Vote extends React.Component {
           axios
             .get("/count/" + el + "/" + localStorage.getItem("VoteId"))
             .then((response) => {
-              console.log(response.data.count);
+              // console.log(response.data.count);
               this.setState({
                 count: [...this.state.count, response.data.count],
               });
-              console.log(this.state.count);
+              // console.log(this.state.count);
             });
         });
-        console.log(this.state.labels);
+        // console.log(this.state.labels);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         alert("Error retrieving data");
         window.location.assign("/");
       });
   };
   getDate = () => {
     axios.get("/time/" + localStorage.getItem("VoteId")).then((response) => {
-      console.log("Data is recieved");
+      // console.log("Data is recieved");
       // console.log(response.data[0].date);
       this.setState({
         date: response.data[0].date,
@@ -93,7 +93,7 @@ class Vote extends React.Component {
   // when voting is over
 
   submit = async (e) => {
-    console.log(this.state.name);
+    // console.log(this.state.name);
     e.preventDefault();
     const res = await fetch("/register", {
       method: "POST",
@@ -107,7 +107,7 @@ class Vote extends React.Component {
       }),
     });
     const data = await res.json();
-    console.log(data.success);
+    // console.log(data.success);
     if (data.success == null) {
       window.alert("Please select before submitting.");
     } else if (!data.success) {

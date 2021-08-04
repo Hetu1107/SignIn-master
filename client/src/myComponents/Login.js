@@ -13,20 +13,19 @@ const login = (props) => {
     });
     var auth2 = window.gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
-      console.log("User signed out.");
-      console.log(window.gapi.auth2.getAuthInstance().isSignedIn.get());
+      // console.log("User signed out.");
+      // console.log(window.gapi.auth2.getAuthInstance().isSignedIn.get());
     });
   };
 
   const responseGoogle = (res) => {
-    console.log(res);
-    console.log(window.gapi.auth2.getAuthInstance().isSignedIn.get());
+    // console.log(res);
+    // console.log(window.gapi.auth2.getAuthInstance().isSignedIn.get());
     localStorage.setItem("email", res.profileObj.email);
-    if (res.profileObj.email.includes("iiitsurat.ac.in")) {
-        Auth.login(() => {
-          props.history.push("/select");
-        });
-      
+    if (res.profileObj.email.includes("@iiitsurat.ac.in")) {
+      Auth.login(() => {
+        props.history.push("/select");
+      });
     } else {
       window.alert("Please login using institute id");
       signOut();

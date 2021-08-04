@@ -71,15 +71,15 @@ class HostIt extends React.Component {
         flag = 1;
       }
     });
-    console.log(this.state.values);
-    console.log(this.state.id);
+    // console.log(this.state.values);
+    // console.log(this.state.id);
     event.preventDefault();
     if (this.state.id === "") {
       window.alert("You need to enter an ID");
     } else if (flag == 1) {
       window.alert("You cannot leave the input field empty.");
     } else if (this.state.click === 0 || this.state.click === 1) {
-      console.log("click is", this.state.click);
+      // console.log("click is", this.state.click);
       window.alert("You need to add atleast two options.");
     } else {
       this.state.values.map((el, i) => {
@@ -90,7 +90,7 @@ class HostIt extends React.Component {
             name: el,
           })
           .then((response) => {
-            console.log(response.data.success);
+            // console.log(response.data.success);
             if (response.data.success) {
               localStorage.setItem("hostid", this.state.id);
               localStorage.setItem(
@@ -105,7 +105,7 @@ class HostIt extends React.Component {
             }
           })
           .catch((error) => {
-            console.log(error);
+            // console.log(error);
           });
       });
 
@@ -115,7 +115,7 @@ class HostIt extends React.Component {
           input: this.state.input,
         })
         .then((response) => {
-          console.log(response.data.success);
+          // console.log(response.data.success);
         });
 
       axios
@@ -125,7 +125,7 @@ class HostIt extends React.Component {
           id: this.state.id,
         })
         .then((response) => {
-          console.log(response.data.success);
+          // console.log(response.data.success);
           if (response.data.success) {
             window.alert("Hosted Successfully");
             window.location.assign("/After_HostIt");
@@ -134,8 +134,8 @@ class HostIt extends React.Component {
     }
   };
   render() {
-    console.log(this.state.date);
-    console.log(this.state.time);
+    // console.log(this.state.date);
+    // console.log(this.state.time);
 
     return (
       <>

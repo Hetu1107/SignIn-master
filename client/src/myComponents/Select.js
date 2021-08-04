@@ -13,7 +13,7 @@ function Select(props) {
   };
   const Back = (a) => {
     setA(a);
-    console.log(a);
+    // console.log(a);
   };
   const submitVote = () => {
     localStorage.setItem("VoteId", id);
