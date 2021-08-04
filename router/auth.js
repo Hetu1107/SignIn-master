@@ -4,6 +4,7 @@ require("../DB/conn");
 const User = require("../model/voterSchema");
 const Container = require("../model/userSchema");
 const Timer = require("../model/timerSchema");
+const Input = require("../model/inputSchema");
 
 router.get("/", (req, res) => {
   res.send("Hello from server auth.js");
@@ -47,6 +48,29 @@ router.post("/timer", async (req, res) => {
     res.json({
       success: true,
     });
+  });
+});
+
+router.post("/input", async (req, res) => {
+  //   res.json({ message: req.body });
+  const input = req.body.input;
+  const id = req.body.id;
+  const inp = new Input({ input, id });
+
+  inp.save(function (err) {
+    if (err) {
+      return res.status(422).send(err);
+    }
+    res.json({
+      success: true,
+    });
+  });
+});
+
+router.get("/getInput/:id", function (req, res) {
+  Input.find({ id: req.params.id }, function (err, result) {
+    if (err) throw err;
+    res.send(result);
   });
 });
 
