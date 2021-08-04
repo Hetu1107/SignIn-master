@@ -14,7 +14,7 @@ const Info = () => {
           </div>
           <div>
             <h2>
-              Your voting will be End in <i class="fas fa-stopwatch"></i>
+              Your voting will be End at <i class="fas fa-stopwatch"></i>
             </h2>
             <h1>{localStorage.getItem("time")}</h1>
           </div>

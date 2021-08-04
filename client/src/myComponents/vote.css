@@ -144,6 +144,9 @@ p {
 
 .chart {
   display: block;
-  margin-top: 50px;
-  width: 90%;
+  margin-top: 20px;
+  width: 100%;
+}
+.result{
+  color: #475cc9;
 }
