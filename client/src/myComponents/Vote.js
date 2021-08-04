@@ -16,6 +16,7 @@ class Vote extends React.Component {
       available: 0,
       date: "",
       time: "",
+      input: "",
     };
   }
 
@@ -61,7 +62,8 @@ class Vote extends React.Component {
         console.log(localStorage.getItem("available"));
       })
       .catch(() => {
-        alert("Error retrieving data");
+        alert("Invalid ID, please recheck the ID you have entered");
+        window.location.assign("/");
       });
   };
   getDate = () => {
@@ -130,7 +132,7 @@ class Vote extends React.Component {
               <form method="POST" onSubmit={this.submit}>
                 <div className="main-container">
                   <h1>
-                    Please choose your valuable Vote !!
+                    {this.state.input}
                     <i class="far fa-hand-point-down"></i>
                   </h1>
                   <div className="radio-buttons">
