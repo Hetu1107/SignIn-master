@@ -131,6 +131,7 @@ router.get("/show/:id", function (req, res) {
 router.get("/del/:id", async (req, res) => {
   try {
     await Container.deleteMany({ id: req.params.id });
+    await Timer.deleteMany({ id: req.params.id });
     return res.status(200).json({ success: true, msg: "Product Deleted" });
   } catch (err) {
     console.error(err);
