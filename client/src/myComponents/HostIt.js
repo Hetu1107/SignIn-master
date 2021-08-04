@@ -113,6 +113,7 @@ class HostIt extends React.Component {
         .post("/input", {
           id: this.state.id,
           input: this.state.input,
+          email: localStorage.getItem("email"),
         })
         .then((response) => {
           // console.log(response.data.success);

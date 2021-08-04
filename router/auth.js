@@ -55,7 +55,8 @@ router.post("/input", async (req, res) => {
   //   res.json({ message: req.body });
   const input = req.body.input;
   const id = req.body.id;
-  const inp = new Input({ input, id });
+  const email = req.body.email;
+  const inp = new Input({ input, id, email });
 
   inp.save(function (err) {
     if (err) {
@@ -132,6 +133,7 @@ router.get("/del/:id", async (req, res) => {
   try {
     await Container.deleteMany({ id: req.params.id });
     await Timer.deleteMany({ id: req.params.id });
+    await Input.deleteMany({ id: req.params.id });
     return res.status(200).json({ success: true, msg: "Product Deleted" });
   } catch (err) {
     console.error(err);
