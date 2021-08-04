@@ -41,6 +41,7 @@ class Vote extends React.Component {
       .get("/show/" + localStorage.getItem("VoteId"))
       .then((res) => {
         const data = res.data;
+        console.log(data);
         this.setState({ posts: data });
         console.log(this.state.posts);
         console.log("Data has been recieved");
@@ -59,11 +60,11 @@ class Vote extends React.Component {
             });
         });
         console.log(this.state.labels);
-        console.log(localStorage.getItem("available"));
       })
       .catch((err) => {
         console.log(err);
         alert("Error retrieving data");
+        window.location.assign("/");
       });
   };
   getDate = () => {
