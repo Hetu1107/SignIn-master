@@ -4,11 +4,20 @@ import axios from "axios";
 import Auth from "./auth";
 import Info from "./After_hostit";
 import { set } from "mongoose";
+import { response } from "express";
 
 class HostIt extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { values: [], id: "", click: 0, c: 0, date: "", time: "" };
+    this.state = {
+      values: [],
+      id: "",
+      click: 0,
+      c: 0,
+      date: "",
+      time: "",
+      input: "",
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -85,7 +94,10 @@ class HostIt extends React.Component {
             console.log(response.data.success);
             if (response.data.success) {
               localStorage.setItem("hostid", this.state.id);
-              localStorage.setItem("time", "Date: "+this.state.date+" & Time: "+this.state.time);
+              localStorage.setItem(
+                "time",
+                "Date: " + this.state.date + " & Time: " + this.state.time
+              );
               // window.alert("You have successfully hosted.");
             } else if (!response.data.success) {
               window.alert(
@@ -97,6 +109,18 @@ class HostIt extends React.Component {
             console.log(error);
           });
       });
+
+      axios
+        .post("/input", {
+          input: this.state.input,
+          id: this.state.id,
+        })
+        .then((response) => {
+          console.log(response.data.success);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
 
       axios
         .post("/timer", {
@@ -123,10 +147,17 @@ class HostIt extends React.Component {
           <h1>Please fill all the details.</h1>
           <div class="details">
             <div class="batch">
-            <div class="tt">
-              <h3>Title of Voting</h3>
-              <input type="text" name="title" id="title" placeholder="Enter title"/>
-            </div>
+              <div class="tt">
+                <h3>Title of Voting</h3>
+                <input
+                  type="text"
+                  name="title"
+                  value={this.state.input}
+                  onChange={() => this.setState({ input: e.target.value })}
+                  id="title"
+                  placeholder="Enter title"
+                />
+              </div>
               <div class="tt">
                 <h3>Enter ID</h3>
                 <input

@@ -16,12 +16,14 @@ class Vote extends React.Component {
       available: 0,
       date: "",
       time: "",
+      input: "",
     };
   }
 
   componentDidMount = () => {
     this.getPost();
     this.getDate();
+    this.getInput();
   };
   checkAvailable = (a) => {
     if (this.state.available !== 1) {
@@ -74,6 +76,14 @@ class Vote extends React.Component {
     });
   };
 
+  getInput = () => {
+    axios
+      .get("/getInput/" + localStorage.getItem("VoteId"))
+      .then((response) => {
+        this.setState({ input: response.data[0].input });
+      });
+  };
+
   // when voting is over
 
   submit = async (e) => {
@@ -108,20 +118,20 @@ class Vote extends React.Component {
         <div class="dm">
           {this.state.available == 1 ? (
             <>
-            <h1 class="result">Final Result</h1>
-            <Chart labels={this.state.labels} count={this.state.count} />
+              <h1 class="result">Final Result</h1>
+              <Chart labels={this.state.labels} count={this.state.count} />
             </>
           ) : (
             <div class="dm">
-            <Dat
-            date={this.state.date}
-            time={this.state.time}
-            checkAvailable={this.checkAvailable}
-          />
+              <Dat
+                date={this.state.date}
+                time={this.state.time}
+                checkAvailable={this.checkAvailable}
+              />
               <form method="POST" onSubmit={this.submit}>
                 <div className="main-container">
                   <h1>
-                    Please choose your valuable Vote !!{" "}
+                    {this.state.input}
                     <i class="far fa-hand-point-down"></i>
                   </h1>
                   <div className="radio-buttons">
@@ -147,7 +157,7 @@ class Vote extends React.Component {
                   </div>
                 </div>
               </form>
-              </div>
+            </div>
           )}
         </div>
       </>
