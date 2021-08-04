@@ -1,22 +1,14 @@
-
 {
-  "name": "myapp",
-  "description": "a really cool app",
-  "version": "1.0.0",
-  "engines": {
-    "node": "6.11.1"
-  },
   "dependencies": {
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "mongoose": "^5.13.5",
-    "packagename": "^2.0.1"
+    "mongoose": "^5.13.5"
   },
   "scripts": {
-    "build": "cd client && npm run build",
-    "install-client": "cd client && npm install",
-    "heroku-postbuild": "npm run install-client && npm run build",
+    "build":"cd client && npm run build",
+    "install-client":"cd client && npm install",
+    "heroku-postbuild":"npm run install-client && npm run build",
     "start": "node app.js",
-    "client": "cd client && npm start"
+    "client":"cd client && npm start"
   }
 }
