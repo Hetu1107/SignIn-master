@@ -1,4 +1,4 @@
-const dotenv = require("dotenv");
+require("dotenv").config();
 const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
@@ -8,10 +8,9 @@ app.use(express.static("public"));
 
 const Todo = require("./model/userSchema");
 
-const PORT = process.env.PORT || 5000;
-// console.log(process.env.PORT);
+const PORT = process.env.PORT;
 require("./DB/conn");
-dotenv.config({ path: "./config.env" });
+
 app.use(require("./router/auth"));
 
 const middleware = (req, res, next) => {
@@ -25,6 +24,9 @@ const middleware = (req, res, next) => {
 app.get("/", (req, res) => {
   res.send("hello from server app.js");
 });
+// app.get("/*",(req,res)=>{
+//   res.sendFile()
+// })
 
 app.listen(PORT, () => {
   console.log(`Server is running at ${hostname}:${PORT}`);

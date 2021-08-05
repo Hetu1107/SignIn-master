@@ -6,5 +6,21 @@
   },
   "scripts": {
     "start": "nodemon app.js"
-  }
+  },
+  "name": "SignIn-master-1",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zaidm124/SignIn-master.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zaidm124/SignIn-master/issues"
+  },
+  "homepage": "https://github.com/zaidm124/SignIn-master#readme",
+  "description": ""
 }
