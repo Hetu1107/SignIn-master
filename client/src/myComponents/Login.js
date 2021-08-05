@@ -30,8 +30,8 @@ const login = (props) => {
       props.history.push("/select");
     });
     // } else {
-    window.alert("Please login using institute id");
-    signOut();
+    // window.alert("Please login using institute id");
+    // signOut();
   };
   // };
 
