@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
-const DATABASE = process.env.MONGODB_URI || process.env.MONGODB_URL;
+const DATABASE =
+  process.env.MONGODB_URI ||
+  "mongodb+srv://zaid123:zaid123@cluster0.4w0sr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 const DB = DATABASE;
 

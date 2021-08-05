@@ -10,7 +10,7 @@ app.use(express.static("public"));
 
 const Todo = require("./model/userSchema");
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 require("./DB/conn");
 
 app.use(require("./router/auth"));
