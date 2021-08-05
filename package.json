@@ -5,7 +5,11 @@
     "mongoose": "^5.13.5"
   },
   "scripts": {
-    "start": "nodemon app.js"
+    "build": "cd client && npm run build",
+    "install-client": "cd client && npm install",
+    "heroku-postbuild": "npm run install-client && npm run build",
+    "start": "node app.js",
+    "client": "cd client && npm start"
   },
   "name": "SignIn-master-1",
   "version": "1.0.0",
