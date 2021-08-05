@@ -102,14 +102,24 @@ router.post("/hoster", async (req, res) => {
   const email = req.body.email;
   const hoster = new Container({ id, name, email });
 
-  hoster.save(function (err) {
-    if (err) {
-      return res.status(422).send(err);
-    }
-    res.json({
-      success: true,
+  const dup = await Container.findOne({ id: id });
+  if (dup) {
+    console.log("already exist");
+    res.send({
+      success: false,
+      message: "This Id already exists, please type a unique id.",
     });
-  });
+  }
+  if (!dup) {
+    hoster.save(function (err) {
+      if (err) {
+        return res.status(422).send(err);
+      }
+      res.json({
+        success: true,
+      });
+    });
+  }
 });
 
 router.get("/show/:id", function (req, res) {
