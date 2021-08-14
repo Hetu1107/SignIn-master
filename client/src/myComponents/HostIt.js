@@ -4,6 +4,7 @@ import axios from "axios";
 import Auth from "./auth";
 import Info from "./After_hostit";
 import { set } from "mongoose";
+import { withRouter } from "react-router-dom";
 
 class HostIt extends React.Component {
   constructor(props) {
@@ -129,7 +130,9 @@ class HostIt extends React.Component {
           // console.log(response.data.success);
           if (response.data.success) {
             window.alert("Hosted Successfully");
-            window.location.assign("/After_HostIt");
+            Auth.login(() => {
+              this.props.history.push("/After_HostIt");
+            });
           }
         });
     }
@@ -207,4 +210,4 @@ class HostIt extends React.Component {
   }
 }
 
-export default HostIt;
+export default withRouter(HostIt);

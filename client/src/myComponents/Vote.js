@@ -4,6 +4,7 @@ import axios from "axios";
 import { Pie } from "react-chartjs-2";
 import Dat from "./Timer";
 import Chart from "./Chart";
+import { withRouter } from "react-router-dom";
 
 class Vote extends React.Component {
   constructor(props) {
@@ -19,11 +20,28 @@ class Vote extends React.Component {
       input: "",
     };
   }
+  userAuthnticated = () => {
+    axios
+      .get("/isUserAuth", {
+        headers: {
+          "x-access-token": localStorage.getItem("token"),
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        if (!response.data.auth) {
+          console.log(response.data.auth);
+          this.props.history.push("/");
+        } else {
+        }
+      });
+  };
 
   componentDidMount = () => {
     this.getPost();
     this.getDate();
     this.getInput();
+    this.userAuthnticated();
   };
   checkAvailable = (a) => {
     if (this.state.available !== 1) {
@@ -44,7 +62,7 @@ class Vote extends React.Component {
         // console.log(data.length);
         if (res.data.length === 0) {
           window.alert("Invalid ID, please re-confirm with the host.");
-          window.location.assign("/");
+          this.props.history.push("/select");
         }
         this.setState({ posts: data });
         // console.log(this.state.posts);
@@ -68,18 +86,24 @@ class Vote extends React.Component {
       .catch((err) => {
         // console.log(err);
         alert("Error retrieving data");
-        window.location.assign("/");
+        this.props.history.push("/");
       });
   };
   getDate = () => {
-    axios.get("/time/" + localStorage.getItem("VoteId")).then((response) => {
-      // console.log("Data is recieved");
-      // console.log(response.data[0].date);
-      this.setState({
-        date: response.data[0].date,
-        time: response.data[0].time,
+    axios
+      .get("/time/" + localStorage.getItem("VoteId"))
+      .then((response) => {
+        // console.log("Data is recieved");
+        // console.log(response.data[0].date);
+        this.setState({
+          date: response.data[0].date,
+          time: response.data[0].time,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        this.props.history.push("/");
       });
-    });
   };
 
   getInput = () => {
@@ -87,6 +111,10 @@ class Vote extends React.Component {
       .get("/getInput/" + localStorage.getItem("VoteId"))
       .then((response) => {
         this.setState({ input: response.data[0].input });
+      })
+      .catch((err) => {
+        console.log(err);
+        this.props.history.push("/");
       });
   };
 
@@ -113,10 +141,10 @@ class Vote extends React.Component {
         window.alert("Please select before submitting.");
       } else if (!data.success) {
         window.alert("You can only vote once");
-        window.location.assign("/");
+        this.props.history.push("/select");
       } else {
         window.alert("You have voted successfully.");
-        window.location.assign("/");
+        this.props.history.push("/select");
       }
     }
   };
@@ -172,4 +200,4 @@ class Vote extends React.Component {
     );
   }
 }
-export default Vote;
+export default withRouter(Vote);

@@ -4,6 +4,7 @@ import HostIt from "./HostIt";
 import logo from "./voting_logo.png";
 import Auth from "./auth";
 import { withRouter } from "react-router-dom";
+import axios from "axios";
 
 function Select(props) {
   const [a, setA] = useState(0);
@@ -11,6 +12,28 @@ function Select(props) {
   const Vote = () => {
     setA(1);
   };
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    props.history.push("/");
+  };
+
+  const userAuthnticated = () => {
+    axios
+      .get("/isUserAuth", {
+        headers: {
+          "x-access-token": localStorage.getItem("token"),
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        if (!response.data.auth) {
+          props.history.push("/");
+        } else {
+        }
+      });
+  };
+  userAuthnticated();
   const Back = (a) => {
     setA(a);
     // console.log(a);
@@ -30,6 +53,8 @@ function Select(props) {
 
   return (
     <>
+      <button onClick={logout}>LogOut</button>
+
       <div class="main">
         {a === 0 ? (
           <div class="contai">

@@ -10,11 +10,11 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
         if (Auth.isAuthenticated()) {
           return <Component {...props} />;
         } else {
-          window.alert("please login before entering the vote web-app");
+          // window.alert("Please enter a vote Id, given by host.");
           return (
             <Redirect
               to={{
-                pathname: "/",
+                pathname: "/select",
                 state: {
                   from: props.location,
                 },

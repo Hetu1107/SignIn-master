@@ -5,9 +5,48 @@ const User = require("../model/voterSchema");
 const Container = require("../model/userSchema");
 const Timer = require("../model/timerSchema");
 const Input = require("../model/inputSchema");
+const JWT = require("../model/JWTSchema");
+const jwt = require("jsonwebtoken");
 
 router.get("/", (req, res) => {
   res.send("Hello from server auth.js");
+});
+
+const verifyJWT = (req, res, next) => {
+  const token = req.headers["x-access-token"];
+  if (!token) {
+    console.log(token);
+    res.send("We need a token, please give it to us next time");
+  } else {
+    jwt.verify(token, "jwtSecret", (err, decoded) => {
+      if (err) {
+        res.json({ auth: false, message: "you have failed to authenticate" });
+      } else {
+        req.userId = decoded.id;
+        next();
+      }
+    });
+  }
+};
+
+router.get("/isUserAuth", verifyJWT, (req, res) => {
+  res.json({ auth: true, message: "you are authenticated" });
+});
+
+router.post("/jwt", async (req, res) => {
+  const email = req.body.email;
+  const user = new JWT({ email: email });
+
+  user.save(function (err) {
+    if (err) {
+      return res.status(422).send(err);
+    }
+    const id = email;
+    const token = jwt.sign({ id }, "jwtSecret", {
+      expiresIn: 300,
+    });
+    res.json({ auth: true, token: token, user: user });
+  });
 });
 
 router.post("/register", async (req, res) => {

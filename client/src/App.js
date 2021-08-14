@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./myComponents/Login";
@@ -15,9 +14,9 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Login} />
-          <Route exact path="/After_HostIt" component={Info} />
+          <ProtectedRoute exact path="/After_HostIt" component={Info} />
           <ProtectedRoute exact path="/vote" component={Vote} />
-          <ProtectedRoute exact path="/select" component={Select} />
+          <Route exact path="/select" component={Select} />
           <Route path="*">
             Page Not Found <br />
             <button onClick={() => window.location.assign("/")}>

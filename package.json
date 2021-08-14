@@ -2,6 +2,7 @@
   "dependencies": {
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.5"
   },
   "scripts": {
@@ -14,7 +15,6 @@
   "name": "SignIn-master-1",
   "version": "1.0.0",
   "main": "app.js",
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zaidm124/SignIn-master.git"

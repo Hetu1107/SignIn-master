@@ -1,7 +1,13 @@
 import React from "react";
 import "./After_hostit.css";
+import { withRouter } from "react-router";
 
-const Info = () => {
+const Info = (props) => {
+  
+  const logout = () => {
+    props.history.push("/select");
+  };
+
   return (
     <>
       <div class="idf">
@@ -19,11 +25,11 @@ const Info = () => {
             <h1>{localStorage.getItem("time")}</h1>
           </div>
         </div>
-        <button class="idm" onClick={() => window.location.assign("/")}>
+        <button class="idm" onClick={logout}>
           Home
         </button>
       </div>
     </>
   );
 };
-export default Info;
+export default withRouter(Info);
