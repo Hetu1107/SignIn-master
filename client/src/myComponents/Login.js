@@ -41,34 +41,34 @@ const Login = (props) => {
     console.log(res);
     console.log(window.gapi.auth2.getAuthInstance().isSignedIn.get());
     if (window.gapi.auth2.getAuthInstance().isSignedIn.get()) {
-      // if (
-      // res.profileObj.email.includes("@iiitsurat.ac.in") ||
-      // res.profileObj.email.includes(".svnit.ac.in")
-      // ) {
-      localStorage.setItem("email", res.profileObj.email);
-      axios
-        .post("/jwt", {
-          email: localStorage.getItem("email"),
-        })
-        .then((response) => {
-          if (response.data.auth) {
-            console.log(response.data);
-            setStatus(true);
-            localStorage.setItem("token", response.data.token);
-            console.log(response.data.token);
-            userAuthnticated();
-            // props.history.push("/select");
-          } else {
+      if (
+        res.profileObj.email.includes("@iiitsurat.ac.in") ||
+        res.profileObj.email.includes(".svnit.ac.in")
+      ) {
+        localStorage.setItem("email", res.profileObj.email);
+        axios
+          .post("/jwt", {
+            email: localStorage.getItem("email"),
+          })
+          .then((response) => {
+            if (response.data.auth) {
+              console.log(response.data);
+              setStatus(true);
+              localStorage.setItem("token", response.data.token);
+              console.log(response.data.token);
+              userAuthnticated();
+              // props.history.push("/select");
+            } else {
+              setStatus(false);
+            }
+          })
+          .catch((err) => {
+            console.log(err);
             setStatus(false);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-          setStatus(false);
-        });
-      // } else {
-      //   window.alert("Please login using institue domain id.");
-      // }
+          });
+      } else {
+        window.alert("Please login using institue domain id.");
+      }
 
       // if (
       //   res.profileObj.email.includes("@iiitsurat.ac.in") ||
